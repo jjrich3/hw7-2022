@@ -17,6 +17,7 @@ document.getElementById("skip").addEventListener("click", function() {skipVid()}
 
 function playVid() {
 	video.play();
+	document.getElementById("volume").innerHTML = document.getElementById("slider").value + "%";
 	console.log("Play Video");
 }
 
