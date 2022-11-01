@@ -1,7 +1,10 @@
 var video = document.querySelector("#player1");
 
 window.addEventListener("load", function() {
-	console.log("Good job opening the window")
+	console.log("Good job opening the window");
+	video.autoplay = false;
+	video.loop = false;
+	video.load();
 	video.pause();
 });
 //If play button is clicked, plays video
