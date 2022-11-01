@@ -1,5 +1,6 @@
 var video = document.querySelector("#player1");
 
+//pauses video on page load
 window.addEventListener("load", function() {
 	console.log("Good job opening the window");
 	video.autoplay = false;
@@ -7,47 +8,47 @@ window.addEventListener("load", function() {
 	video.load();
 	video.pause();
 });
-//If play button is clicked, plays video
-document.getElementById("play").addEventListener("click", function() {playVid()} );
-//If pause button is clicked, pauses video
-document.getElementById("pause").addEventListener("click", function() {pauseVid()} );
-//If slow down button is clicked, slows down video by 10% each click
-document.getElementById("slower").addEventListener("click", function() {slowVid()} );
-//If speed up button is clicked, speeds up video by 10% each click
-document.getElementById("faster").addEventListener("click", function() {fastVid()} );
-//If skip ahead button is clicked, skips 10 seconds of video
-document.getElementById("skip").addEventListener("click", function() {skipVid()} );
 
+//If play button is clicked, plays video
+document.getElementById("play").addEventListener("click", playVid);
 function playVid() {
 	video.play();
-	document.getElementById("volume").innerHTML = document.getElementById("slider").value + "%";
 	console.log("Play Video");
+	document.getElementById("volume").innerHTML = document.getElementById("slider").value + "%";
 }
 
+//If pause button is clicked, pauses video
+document.getElementById("pause").addEventListener("click", pauseVid);
 function pauseVid() {
 	video.pause();
 	console.log("Pause Video");
 }
 
+//If slow down button is clicked, slows down video by 10% each click
+document.getElementById("slower").addEventListener("click", slowVid);
 function slowVid() {
 	video.playbackRate *= 0.9;
 	console.log("current playback speed: " + video.playbackRate);
 }
 
+//If speed up button is clicked, speeds up video by 10% each click
+document.getElementById("faster").addEventListener("click", fastVid);
 function fastVid() {
 	video.playbackRate *= 1/(0.9);
 	console.log("current playback speed: " + video.playbackRate);
 }
 
+//If skip ahead button is clicked, skips 10 seconds of video
+document.getElementById("skip").addEventListener("click", skipVid);
 function skipVid() {
 	video.currentTime = video.currentTime + 10;
-	if(video.currentTime >= video.endTime){
+	if(video.currentTime >= video.duration){
 		video.currentTime = 0;
 		video.pause();
 	}
 	console.log("current video time: " + video.currentTime);
+	//console.log(video.duration);
 }
-
 document.getElementById("slider").addEventListener("input", function() {volumeVid()} );
 function volumeVid(){
 	video.volume = document.getElementById("slider").value / 100.0;
